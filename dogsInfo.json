@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "COCO",
+        "breed": "Labrador retriever",
+        "age": 3
+    },
+    {
+        "id": 2,
+        "name": "ZUZU",
+        "breed": "Golden retriever",
+        "age": 1
+    },
+    {
+        "id": 3,
+        "name": "Kanxi",
+        "breed": "Japanese Spitz",
+        "age": 2
+    }
+]

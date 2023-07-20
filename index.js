@@ -1,9 +1,11 @@
 const express = require('express');
 const serverConfig = require('./configs/serverConfigs');
 const userRoutes = require('./routes/userRoutes');
+const dogRoutes = require("./routes/dogRoutes");
 const app = express();
 
 app.use('/userapi', userRoutes);
+app.use("/dogapi", dogRoutes)
 
 app.get('/', (req, res) => {
     res.send({
