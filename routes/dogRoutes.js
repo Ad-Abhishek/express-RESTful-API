@@ -7,7 +7,7 @@ const filePath = path.join(__dirname, "../dogsInfo.json");
 
 const getDogsFromFile = () => {
     const data = fs.readFileSync(filePath);
-    return data;
+    return JSON.parse(data);
 }
 
 router.get('/', (req, res) => {
@@ -19,7 +19,20 @@ router.get('/', (req, res) => {
 
 router.get('/dogs', (req, res) => {
     const dogs = getDogsFromFile();
-    res.send(JSON.parse(dogs));
+    res.send(dogs);
+})
+
+router.get('/dogs/:id', (req, res) => {
+    const dogs = getDogsFromFile();
+    const dogId = req.params.id;
+
+    const dog = dogs.find(dog => dog.id === parseInt(dogId));
+
+    if(!dog) {
+        res.status(404).json({error: "Dog not found!"});
+    } else {
+        res.send(dog);
+    }
 })
 
 

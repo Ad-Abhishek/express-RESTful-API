@@ -7,7 +7,7 @@ const filePath = path.join(__dirname, "../UserDataBase.json");
 
 const getDataFromFile = () => {
     const data = fs.readFileSync(filePath);
-    return data;
+    return JSON.parse(data);
 }
 
 router.get('/test', (req, res) => {
@@ -19,7 +19,20 @@ router.get('/test', (req, res) => {
 
 router.get('/users', (req, res) => {
     const users = getDataFromFile();
-    res.send(JSON.parse(users));
+    res.send(users);
+});
+
+router.get('/users/:id', (req, res) => {
+    const users = getDataFromFile();
+    const userId = req.params.id;
+
+    const user = users.find(user => user.id === parseInt(userId));
+
+    if(!user) {
+        res.status(404).json({error: "User not found!"});
+    } else {
+        res.send(user);
+    }
 });
 
 module.exports = router;
